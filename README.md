@@ -8,7 +8,7 @@
 $ pip install -r requirements.txt
 ```
 
-#### Register an application
+#### Register application to issue token
 
 [Create your application](https://typetalk.in/my/develop/applications/register) to use API. When issuing client id and client secret, you should select "Client Credentials" for "Grant Type".
 
