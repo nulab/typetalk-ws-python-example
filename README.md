@@ -2,6 +2,10 @@
 
 ### Setup
 
+#### Requirement
+
+This sample requires Python 3.x.
+
 #### Install required libraries
 
 ```
