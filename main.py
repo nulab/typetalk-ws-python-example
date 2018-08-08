@@ -17,7 +17,7 @@ def issue_access_token(client_id, client_secret):
         'grant_type': 'client_credentials',
     }
     data = urllib.urlencode(params)
-    res = urllib2.urlopen(urllib2.Request('https://typetalk.in/oauth2/access_token', data))
+    res = urllib2.urlopen(urllib2.Request('https://typetalk.com/oauth2/access_token', data))
     return json.load(res)['access_token']
 
 
@@ -44,14 +44,14 @@ def main():
 
     access_token = issue_access_token(os.environ['TYPETALK_CLIENT_ID'], os.environ['TYPETALK_CLIENT_SECRET'])
     websocket.enableTrace(True)
-    ws = websocket.WebSocketApp("wss://typetalk.in/api/v1/streaming",
+    ws = websocket.WebSocketApp("wss://message.typetalk.com/api/v1/streaming",
                                 header=["Authorization: Bearer %s" % access_token],
                                 on_open=on_open,
                                 on_message=on_message,
                                 on_error=on_error,
                                 on_close=on_close)
     try:
-        ws.run_forever()
+        ws.run_forever(sslopt={"check_hostname": False})
     except KeyboardInterrupt:
         ws.close()
 
